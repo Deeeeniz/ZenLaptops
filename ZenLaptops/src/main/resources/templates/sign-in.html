@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Please sign in</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
+<body style="background-color:#292930;">
+<center>
+<span style="display:inline-block;"><a href="/" class="btn btn-primary">Домой</a></span>
+</center>
+<div class="container" style="margin-top:12px">
+<center>
+    <span id="notif" sec:authorize="isAuthenticated()" style="background-color:#78866b;color:whitesmoke;font-weight:bold;" class="rounded">Вы успешно зарегестрировались! <a  onclick="document.getElementById('notif').style.display='none'">X</a></span>
+</center>
+    <form class="form-signin" target="_self" method="post" action="/login">
+        <h5 class="form-signin-heading" style="font-weight:bold;color:whitesmoke">Пожалуйста, войдите в свой аккаунт</h5>
+        <p style="margin-top:20px">
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+        </p>
+        <p style="margin-top:3px;">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
+    </form>
+</div>
+<script>
+    function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+</body></html>

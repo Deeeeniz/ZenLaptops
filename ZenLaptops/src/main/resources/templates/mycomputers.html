@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>Title</title>
+</head>
+<body style="background-color:purple">
+<style>
+    input{
+    transition: .1s ease-in-out;
+    }
+    input:hover{
+    color: whitesmoke;
+    transform: scale(1.05);
+    }
+    a{
+    transition: .1s ease-in-out;
+    }
+    a:hover{
+    color: whitesmoke;
+    transform: scale(1.05);
+    }
+    button{
+    transition: .1s ease-in-out;
+    }
+    button:hover{
+    color: whitesmoke;
+    transform: scale(1.05);
+    }
+</style>
+<div style="width:1200px;height:600px;background-color:darkorange;margin:auto;margin-top:120px;border:2px white solid" class="rounded">
+    <nav style="margin: 5px 0 0 10px">
+        <span style="display:inline-block;"><a href="/" class="btn btn-primary">Домой</a></span>
+        <span style="display:inline-block;"><a href="/laptop-base/add-laptop" class="btn btn-secondary">Новый продукт</a></span>
+        <span style="display:inline-block;">Show entities: <select itemtype="number"
+                                                                   onload="document.getElementsByTagName('select')[0].focus()">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select></span>
+        <span style="display:inline-block;"><input type="text" name="Search" id="search" placeholder="Search"></span>
+    </nav>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Бренд</th>
+            <th scope="col">Состояние</th>
+            <th scope="col">Линк от фото</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Функции</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="elem : ${laptop_list}">
+            <th scope="row" th:text="${elem.id}">id</th>
+            <td th:text="${elem.brand}">Марка</td>
+            <td th:text="${elem.cond}">Состояние</td>
+            <td th:text="${elem.imageLink}">Линк фото</td>
+            <td th:text="${elem.price}">Цена</td>
+            <td>
+                <a type="button" id="editbtn" class="btn btn-success" value="" th:href="@{/laptop-base/edit/{id} (id=${elem.id}) }">Редактировать</a>
+                    <a type="button" id="deletebtn" class="btn btn-warning" value="Удалить" th:href="@{/laptop-base/delete/{id} (id=${elem.id})}">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

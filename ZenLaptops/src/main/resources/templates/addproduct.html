@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>Title</title>
+</head>
+<body style="background-color:lightblue">
+<style>
+    input{
+    transition: .1s ease-in-out;
+    }
+    input:hover{
+    transform: scale(1.05);
+    }
+</style>
+<form th:action="@{/laptop-base/save}" method="POST" th:object="${laptops}" enctype="multipart/form-data">
+    <table class="table" style="width:1000px;text-align:center;margin-left:300px" >
+        <thead>
+        <tr>
+            <th scope="col" style="color:black;font-weight:bold">Category</th>
+            <th scope="col" style="color:olive;font-weight:bold">Data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="d-hidden">
+            <td id="id_td"><input type="hidden" th:field="*{id}" style="border: 3px solid olive"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="brand_td" style="color:black;">Бренд</label></th>
+            <td id="brand_td"><input type="text" th:field="*{brand}" style="border: 3px solid olive"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="model_td" style="color:black;">Модель</label></th>
+            <td id="model_td"><input type="text" th:field="*{model}" style="border: 3px solid olive"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="price_td" style="color:black;">Стоимость</label></th>
+            <td id="price_td"><input type="text" th:field="*{price}" style="border: 3px solid olive"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="details_td" style="color:black;">Подробно</label></th>
+            <td id="details_td"><input type="text" th:field="*{details}" style="border: 3px solid olive"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="condition_td" style="color:black;">Состояние</label></th>
+            <td><select th:field="*{cond}" id="condition_td">
+                <option th:value="Новый">Новый</option>
+                <option th:value="Старый">Старый</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="photo_td" style="color:black;">Фото</label></th>
+            <td id="photo_td"><input type="file" name="image"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="ram_td" style="color:black;">RAM</label></th>
+            <td id="ram_td"><input type="text" th:field="*{RAM}" style="border: 3px solid olive"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="cpu_td" style="color:black;">CPU</label></th>
+            <td id="cpu_td"><input type="text" th:field="*{CPU}" style="border: 3px solid olive"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="memory_td" style="color:black;">Память</label></th>
+            <td id="memory_td"><input type="text" th:field="*{memory}" style="border: 3px solid olive"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="memorytp_td" style="color:black;">Тип памяти</label></th>
+            <td><select th:field="*{memory_type}" id="memorytp_td">
+                <option th:value="SSD">SSD</option>
+                <option th:value="HDD">HDD</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="os_td" style="color:black;">Оперативная система</label></th>
+            <td id="os_td"><input type="text" th:field="*{OS}" style="border: 3px solid olive"></td>
+        </tr>
+        <tr>
+            <th scope="row"><label for="gpu_td" style="color:black;">GPU</label></th>
+            <td id="gpu_td"><input type="text" th:field="*{GPU}" style="border: 3px solid olive"></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <input type="submit" value="Save"  class="btn btn-secondary" style="margin-left:750px">
+</form>
+
+</body>
+</html>

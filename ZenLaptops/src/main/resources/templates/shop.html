@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>Title</title>
+</head>
+<style>
+    .card{
+    width:10rem;background-color:gold;display:inline-block;
+    }
+    img{
+    border-bottom:5px crimson solid;
+    }
+    a{
+    color: rgb(245, 220, 200);
+	width: 200px;
+	height: 40px;
+	font-size: 22px; font-weight: bolder; font-family:Arial, Helvetica, sans-serif; text-align:center;
+	}
+	#homepg{
+		margin:10px 0 0 740px;
+	}
+    input{
+    transition: .1s ease-in-out;
+    }
+    input:hover{
+    color: whitesmoke;
+    transform: scale(1.05);
+    }
+    a{
+    transition: .1s ease-in-out;
+    width:120px;
+    }
+    a:hover{
+    color: whitesmoke;
+    transform: scale(1.05);
+    }
+    button{
+    transition: .1s ease-in-out;
+    }
+    button:hover{
+    color: whitesmoke;
+    transform: scale(1.05);
+    }
+
+</style>
+<body style="background-color:#e53935">
+<nav>
+    <a href="/" class="btn btn-primary"id="homepg">Домой</a>
+</nav>
+<div class="container" style="width:1000px;">
+    <span>
+         <div class="card" >
+        <img src="https://www.notebookcheck.net/uploads/tx_nbc2/4_zu_3_nitro5b.jpg"
+             class="card-img-top" alt="IMG">
+        <div class="card-body">
+            <span class="card-text" >
+                <p>Бренд: Acer</p>
+                <p>Модель: Nitro 5</p>
+                <p>Цена: 1500$</p>
+                <p>Продавец: King Arthur</p>
+                <p>Телефон: 000-000-00-00</p>
+            </span>
+            <a href="/laptop-shop/details1" class="btn btn-primary">Подробно</a>
+        </div>
+    </div>
+    </span>
+
+
+    <span th:if="${not #lists.isEmpty(laptop_list)}">
+        <div class="card" th:each="laptops : ${laptop_list}">
+        <img class="card-img-top" alt="IMG" th:src="@{api/{account_id}/{imageLink} (imageLink = ${laptops.imageLink}, account_id = ${laptops.theAccount.id})}">
+        <div class="card-body">
+            <span class="card-text" >
+                <p>Бренд: <span th:text="${laptops.brand}"></span></p>
+                <p>Модель: <span th:text="${laptops.model}"></span></p>
+                <p>Цена: <span th:text="${laptops.price}"></span></p>
+                <p>Продавец: <span th:text="${laptops.theAccount.username}"></span></p>
+                <p>Телефон: <span th:text="${laptops.theAccount.phone_number}"></span></p>
+            </span>
+     <a th:href="@{/laptop-shop/info/{id} (id=${laptops.id})}" class="btn btn-primary">Подробно</a>
+        </div>
+    </div>
+   </span>
+
+</div>
+</body>
+</html>
